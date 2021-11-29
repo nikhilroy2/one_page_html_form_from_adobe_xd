@@ -45,6 +45,7 @@ header {
   padding-right: 4rem;
   padding-bottom: 2.3rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 header .base_img {
   display: flex;
@@ -168,7 +169,48 @@ header .base_list_wrapper li:last-child a {
     align-items: center;
   }
   header .base_img img:nth-child(1) {
-    display: inline-block;
-    margin-right: 2.7rem;
+    height: 4rem;
+  }
+  header .base_img img:nth-child(2) {
+    height: 3rem;
+  }
+  :root {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 580px) {
+  :root {
+    font-size: 6px;
+  }
+}
+@media (max-width: 300px) {
+    body{
+        padding: 1rem;
+    }
+  header .base_img img:nth-child(1) {
+    height: 3rem;
+  }
+  header .base_img img:nth-child(2) {
+    height: 2rem;
+  }
+  :root {
+    font-size: 6px;
+  }
+  #fantasy_form .box:nth-child(1) {
+    margin-right: 0px;
+  }
+  .container_wrapper .input_group input,
+  .container_wrapper .input_flex_box {
+    width: 100%;
+  }
+  .container_wrapper .input_flex_box * {
+    width: 100% !important;
+  }
+  .input_include_more {
+    max-width: 100%;
+  }
+  .box{
+      width: 100%;
   }
 }
