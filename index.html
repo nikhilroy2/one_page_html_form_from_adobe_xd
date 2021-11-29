@@ -34,10 +34,10 @@
                         <input type="text" name="company_name" placeholder="Company Name">
                     </div>
                     <div class="input_group">
-                        <input type="text" name="first_name" placeholder="First Name">
+                        <input id="column-left" type="text" name="first-name" placeholder="First Name">
                     </div>
                     <div class="input_group">
-                        <input type="text" name="last_name" placeholder="Last Name">
+                        <input id="column-right" type="text" name="last-name" placeholder="Last Name">
                     </div>
                     <div class="input_group">
                         <input type="text" name="billing_address" placeholder="Billing Address">
@@ -97,6 +97,9 @@
         $('form').card({
             container: '.container_wrapper',
             width: 280,
+            formSelectors: {
+                nameInput: 'input[name="first-name"], input[name="last-name"]'
+            }
         });
     </script>
 </body>
