@@ -1,3 +1,8 @@
+/* 
+
+breakpoints max: 1030px
+breakpoints
+*/
 @font-face {
   font-family: dinpro_font;
   src: url(./fonts/DINPro.otf);
@@ -59,7 +64,7 @@ header .base_list_wrapper {
 header .base_list_wrapper a {
   display: inline-block;
   font-size: 2.5rem;
-  color: #FBFBFB !important;
+  color: #fbfbfb !important;
   text-decoration: none;
   padding-right: 3.1rem;
   line-height: 3.4rem;
@@ -68,74 +73,102 @@ header .base_list_wrapper li:last-child a {
   padding-right: 0px;
 }
 
-.container_wrapper h2{
-    font-size: 3.5rem;
+.container_wrapper h2 {
+  font-size: 3.5rem;
 }
-#fantasy_form{
+#fantasy_form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#fantasy_form .box:nth-child(1) {
+  margin-right: 21.2rem;
+}
+.container_wrapper .input_group {
+  margin-bottom: 1.3rem;
+}
+.container_wrapper .input_group input {
+  padding-left: 1.2rem;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  padding-right: 1.2rem;
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 300;
+  line-height: 3rem;
+  border: 1px solid #e4cd70 !important;
+  border-radius: 5px;
+  background: transparent;
+  outline: none;
+  width: 35.6rem;
+}
+
+.container_wrapper .input_group input::placeholder {
+  color: white;
+  font-size: 2.2rem;
+}
+.input_flex_box {
+  display: flex;
+  width: 35.6rem;
+}
+.input_flex_box * {
+  flex-grow: 1;
+  width: 17rem !important;
+}
+.input_flex_box .input_group:nth-child(1) {
+  margin-right: 1.5rem;
+}
+.input_include_more {
+  max-width: 45rem;
+}
+.input_content p {
+  font-size: 2.2rem;
+  font-weight: 300;
+  padding-top: 2.6rem;
+}
+.btn_wrapper {
+  margin-top: 4rem;
+}
+.btn_wrapper .btn_submit {
+  font-size: 3.5rem;
+  color: #000303;
+  background: url("./img/btn_bg.png");
+  background-position: center center;
+  background-size: 100% 100%;
+  font-weight: bold;
+  padding: 0.6rem 5rem;
+  display: inline-block;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.input_include_more .btn_wrapper {
+  text-align: center;
+}
+
+@media (max-width: 1030px) {
+  .container_wrapper .input_group input,
+  .container_wrapper .input_flex_box {
+    width: 28rem;
+  }
+  .container_wrapper .input_flex_box * {
+    width: 100% !important;
+  }
+  .input_include_more {
+    max-width: 35rem;
+  }
+  #fantasy_form .box:nth-child(1) {
+    margin-right: 8rem;
+  }
+}
+
+@media (max-width: 730px) {
+  header .base_img {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-#fantasy_form .box:nth-child(1){
-    margin-right: 21.2rem;
-}
-.container_wrapper .input_group{
-    margin-bottom: 1.3rem;
-}
-.container_wrapper .input_group input{
-    padding-left: 1.2rem;
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
-    padding-right: 1.2rem;
-    color: white;
-    font-size: 2.2rem;
-    font-weight: 300;
-    line-height: 3rem;
-    border: 1px solid #E4CD70!important;
-    border-radius: 5px;
-    background: transparent;
-    outline: none;
-    width: 35.6rem;
-}
-.container_wrapper .input_group input::placeholder{
-    color: white;
-    font-size: 2.2rem;
-}
-.input_flex_box{
-    display: flex;
-    width: 35.6rem;
-}
-.input_flex_box *{
-    flex-grow: 1;
-    width: 17rem!important;
-}
-.input_flex_box .input_group:nth-child(1){
-    margin-right: 1.5rem;
-}
-.input_include_more{
-    max-width: 45rem;
-}
-.input_content p{
-    font-size: 2.2rem;
-    font-weight: 300;
-    padding-top: 2.6rem;
-}
-.btn_wrapper{
-    margin-top: 4rem;
-}
-.btn_wrapper .btn_submit{
-    font-size: 3.5rem;
-    color: #000303;
-    background: url('./img/btn_bg.png');
-    background-position: center center;
-    background-size: 100% 100%;
-    font-weight: bold;
-    padding: .6rem 5rem;
+    align-items: center;
+  }
+  header .base_img img:nth-child(1) {
     display: inline-block;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-.input_include_more .btn_wrapper{
-    text-align: center;
+    margin-right: 2.7rem;
+  }
 }
