@@ -67,7 +67,10 @@
                     </div>
                     <div class="input_flex_box">
                         <div class="input_group">
-                            <input id="column-left" type="text" name="expiry" placeholder="Expiry (MM/YY)">
+                            <input id="column-left" type="number" min="1" max="2" name="expiry_month" placeholder="MM">
+                        </div>
+                        <div class="input_group">
+                            <input id="column-left" type="number" min="4" max="4" name="expiry_year" placeholder="YY">
                         </div>
                         <div class="input_group">
                             <input id="column-right" type="text" name="cvc" placeholder="CVV2">
