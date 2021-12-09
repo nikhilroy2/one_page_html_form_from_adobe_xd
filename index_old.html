@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Fantasy Boss</title>
+<link rel="shortcut icon" href="images/logo.png">
+<style type="text/css">
+.fp-enabled body, html.fp-enabled {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent
+}
+.fp-section {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+.fp-slide {
+    float: left
+}
+.fp-slide, .fp-slidesContainer {
+    height: 100%;
+    display: block
+}
+.fp-slides {
+    z-index: 1;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: all .3s ease-out;
+    transition: all .3s ease-out
+}
+.fp-section.fp-table, .fp-slide.fp-table {
+    display: table;
+    table-layout: fixed;
+    width: 100%
+}
+.fp-tableCell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%
+}
+.fp-slidesContainer {
+    float: left;
+    position: relative
+}
+.fp-controlArrow {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    margin-top: -38px;
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0)
+}
+.fp-controlArrow.fp-prev {
+    left: 15px;
+    width: 0;
+    border-width: 38.5px 34px 38.5px 0;
+    border-color: transparent #fff transparent transparent
+}
+.fp-controlArrow.fp-next {
+    right: 15px;
+    border-width: 38.5px 0 38.5px 34px;
+    border-color: transparent transparent transparent #fff
+}
+.fp-scrollable {
+    position: relative
+}
+.fp-scrollable, .fp-scroller {
+    overflow: hidden
+}
+.iScrollIndicator {
+    border: 0!important
+}
+.fp-notransition {
+    -webkit-transition: none!important;
+    transition: none!important
+}
+#fp-nav, .fp-slidesNav {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0)
+}
+#fp-nav {
+    margin-top: -90px;
+    top: 50%;
+    position: fixed;
+    z-index: 100
+}
+#fp-nav.fp-right {
+    right: 17px
+}
+#fp-nav.fp-left {
+    left: 17px
+}
+.fp-slidesNav {
+    position: absolute;
+    z-index: 4;
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    left: 0!important;
+    right: 0;
+    margin: 0 auto!important
+}
+.fp-slidesNav.fp-bottom {
+    bottom: 17px
+}
+.fp-slidesNav.fp-top {
+    top: 17px
+}
+#fp-nav ul, .fp-slidesNav ul {
+    margin: 0;
+    padding: 0
+}
+#fp-nav ul li, .fp-slidesNav ul li {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 20px 10px;
+    position: relative
+}
+.fp-slidesNav ul li {
+    display: inline-block
+}
+#fp-nav ul li a, .fp-slidesNav ul li a {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none
+}
+#fp-nav ul li a.active span, #fp-nav ul li:hover a.active span, .fp-slidesNav ul li a.active span, .fp-slidesNav ul li:hover a.active span {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+		    background: #00FFCE;
+
+		
+}
+#fp-nav ul li a span, .fp-slidesNav ul li a span {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    height: 30px;
+    width: 30px;
+    border: 0;
+    background: #333;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out
+}
+#fp-nav ul li:hover a span, .fp-slidesNav ul li:hover a span {
+    width: 30px;
+    height: 30px;
+	    background: #00FFCE;
+
+}
+#fp-nav ul li .fp-tooltip, .fp-sr-only {
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap
+}
+#fp-nav ul li .fp-tooltip {
+    top: -2px;
+    color: #fff;
+    font-size: 14px;
+    font-family: arial, helvetica, sans-serif;
+    max-width: 220px;
+    display: block;
+    opacity: 0;
+    cursor: pointer;
+    width: 0
+}
+#fp-nav ul li:hover .fp-tooltip, #fp-nav.fp-show-active a.active+.fp-tooltip {
+    -webkit-transition: opacity .2s ease-in;
+    transition: opacity .2s ease-in;
+    width: auto;
+    opacity: 1
+}
+#fp-nav ul li .fp-tooltip.fp-right {
+    right: 20px
+}
+#fp-nav ul li .fp-tooltip.fp-left {
+    left: 20px
+}
+.fp-auto-height .fp-slide, .fp-auto-height .fp-tableCell, .fp-auto-height.fp-section, .fp-responsive .fp-auto-height-responsive .fp-slide, .fp-responsive .fp-auto-height-responsive .fp-tableCell, .fp-responsive .fp-auto-height-responsive.fp-section {
+    height: auto!important
+}
+.fp-sr-only {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    clip: rect(0,0,0,0);
+    border: 0
+}
+</style>
+<style id="stylesheet-critical" type="text/css">
+@CHARSET "ISO-8859-1";
+blockquote, body, dd, div, dl, dt, fieldset, form, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
+  padding: 0;
+  margin: 0
+}
+a {
+  text-decoration: none
+}
+table {
+  border-spacing: 0
+}
+abbr, acronym, fieldset, img {
+  border: 0
+}
+address, caption, cite, code, dfn, em, th, var {
+  font-weight: 400;
+  font-style: normal
+}
+h1, strong {
+  font-weight: 700
+}
+strong {
+  font-style: normal
+}
+ol, ul {
+  list-style: none
+}
+caption, th {
+  text-align: left
+}
+h1 {
+  padding: 0;
+  font-size: 8em;
+  margin: 0 0 .25em
+}
+h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  font-size: 100%
+}
+q:after, q:before {
+  content: ''
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box
+}
+#fullpage, .section, body, html {
+  height: 100%
+}
+body, html {
+  overflow: hidden
+}
+.section.fp-table {
+  display: table;
+  table-layout: fixed;
+  width: 100%
+}
+.fp-tableCell {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%
+}
+.examples, .fp-slidesNav.bottom {
+  display: none
+}
+body {
+  font-family: arial, helvetica;
+  color: #fff
+}
+[data-lang=ru] h1 {
+  font-size: 6em
+}
+#section-1 h2, .intro p {
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased
+}
+.intro p {
+  max-width: -webkit-calc(30em - (1.3em*2));
+  max-width: calc(30em - (1.3em*2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1.3em;
+  padding-left: 1.3em;
+  font-size: 1.5em
+}
+#fp-nav ul li a span, #menu-line, .fp-slidesNav ul li a span {
+  background: #fff
+}
+.section, .twitter-share i, .wrap {
+  position: relative
+}
+.section {
+  text-align: center
+}
+.wrap {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px
+}
+#menu-line {
+  display: none !important;
+}
+#menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 70;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  letter-spacing: 1px;
+  font-size: 22px;
+  font-weight: bold;
+}
+#menu li {
+  display: inline-block;
+  margin: 10px 0
+}
+#menu a {
+  color: #fff;
+  padding: 0 1.1em 1.1em
+}
+.menu-active {
+  font-weight: 700
+}
+#menu-theme-mobile, .menu-sub {
+  display: none
+}
+.menu-sub li {
+  display: block
+}
+.plugins {
+  visibility: hidden;
+  position: absolute
+}
+#section-1 {
+  background-image: url(images/Image-3.png), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#section-1 h1 {
+  font-size: 40px;
+  font-weight: 600;
+  color: #fff
+}
+#section-1 h2 {
+  color: rgba(255, 255, 255, .7);
+  font-size: 30px;
+  font-weight: 400;
+  margin: -10px 30px 10px
+}
+#section-1 h2 span {
+  color: #BE2E2E;
+}
+#section-1 li, .github-data {
+  display: inline-block;
+  margin: 1.25em .3em
+}
+.section-1-button {
+  padding: .93em 1.87em;
+  background: #fff;
+  border-radius: 5px;
+  display: block;
+  color: #ff5f45
+}
+#download a {
+  background: #004f69;
+  color: #fff
+}
+.section-1-image {
+  max-width: 50%;
+  margin: auto;
+}
+.section-1-image img {
+  max-width: 100%;
+}
+#section-2 {
+  background: #000 !important;
+}
+.logo {
+  position: absolute;
+  left: 20px;
+  top: 14px;
+  z-index: 99;
+  opacity: 1
+}
+.logo img {
+  display: inline-block;
+  vertical-align: middle;
+}
+.logo img:nth-child(2) {
+  height: 45px;
+  margin-left: 30px;
+}
+#section-2 p {
+  font-size: 20px;
+  font-weight: bold;
+}
+#section-2 .contact-boxes {
+  margin: auto;
+  display: flex;
+}
+#section-2 .contact-boxes .single-box {
+  background-image: url(images/Image-1.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  width: 33%;
+  background-position: bottom center;
+}
+#section-2 h5 {
+  font-size: 30px;
+  color: #00FFCE;
+  font-weight: bold;
+}
+#section-2 .contact-boxes .single-box:nth-child(2) {
+  margin: 0 100px;
+}
+#section-2 .contact-boxes p {
+  font-size: 22px;
+}
+.section .container {
+  width: 86%;
+  margin: auto;
+  padding-top: 100px
+}
+#section-2 h4 {
+  font-size: 26px;
+  text-decoration: underline;
+  margin: 30px 0;
+  font-weight: bold;
+}
+#section-2 .contact-boxes span {
+  font-weight: bold;
+  font-size: 16px;
+  color: #FAFA00
+}
+	
+#section-3 {
+  background-image: url(images/Image96.png) , linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+#section-3 .faq-question {
+    margin: 50px auto 30px;
+    /* padding: 0 40px; */
+    display: flex;
+    justify-content: space-between;
+}
+	#section-3 .faq-box {
+    border: 1px solid #707070;
+    flex: 0 0 calc(50% - 40px);
+    /* margin: 0 30px; */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+	#section-3 .faq-box  p {
+    font-size: 18px;
+	font-weight: bold;
+}
+	#section-3 h4 {
+  font-size: 26px;
+  text-decoration: underline;
+  margin: 30px 0;
+  font-weight: bold;
+}
+
+#section-4 {
+    height: 100vh;
+    display: flex;
+    align-items: end;
+    text-align: center;
+    background-image: url(images/Image95.png), linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: top left;
+    padding-bottom: 40px;
+}
+	
+	#section-4 .col-left{
+		width: 60%;
+		display: flex;
+	}
+		#section-4 .col-right{
+			width: 38%;
+	}
+#section-4 .container {
+    display: flex;
+    padding-top: 150px;
+    justify-content: space-between;
+}	
+	.sign-up-box {
+    padding: 0 25px;
+}
+.sign-up-box h5 {
+    font-size: 26px;
+    margin-bottom:80px;
+	font-weight: bold;
+}
+.sign-up-box p {
+    font-size: 20px;
+	font-weight: bold;
+}	
+.sign-up-box a {
+    background-image: url(images/Rectangle599.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 30px;
+    font-weight: 700;
+    color: #000 !important;
+    width: 272px;
+    height: 73px;
+    line-height: 73px;
+    margin-top: 120px;
+}
+	#section-4 .col-left img{
+		max-height: 500px;
+	}
+.languages {
+  display: none
+}
+.language-current {
+  margin: 15px 0 6px 15px;
+  z-index: 99;
+  cursor: pointer
+}
+.flag {
+  width: 35px;
+  height: 24px;
+  display: inline-block;
+  margin: 0 17px 0 0;
+  vertical-align: middle;
+  background-image: url(https://alvarotrigo.com/fullPage/imgs/flags.png)
+}
+.flag-chinese {
+  background-position: 0 0
+}
+.flag-english {
+  background-position: -35px 0
+}
+.flag-russian {
+  background-position: -70px 0
+}
+.flag-korean {
+  background-position: -105px 0
+}
+.flag-spanish {
+  background-position: -140px 0
+}
+.language-triangle {
+  position: absolute;
+  top: 22px;
+  left: 3px;
+  fill: #fff;
+  height: 6px;
+  width: 8px
+}
+.twitter-share i {
+  vertical-align: middle;
+  display: inline-block;
+  width: 38px;
+  height: 14px;
+  color: #fff;
+  top: -4px;
+  left: -2px;
+  fill: #fff
+}
+.twitter-share svg {
+  height: 40px;
+  margin-top: -10px
+}
+@media screen and (max-width:1135px) {
+  .fp-tableCell {
+    font-size: .9em
+  }
+  .examples-wrapper {
+    top: 100px;
+    -webkit-transform: none;
+    transform: none
+  }
+}
+@media screen and (max-width:1050px) {
+  .fp-tableCell {
+    font-size: .85em
+  }
+}
+@media screen and (max-width:1030px) {
+  #section-3 .intro {
+    width: 40%
+  }
+  .shell {
+    width: calc(60% - 54px)
+  }
+}
+@media screen and (max-width:900px) {
+  #section-3 .intro {
+    display: block;
+    text-align: center;
+    width: 100%
+  }
+  #section-3 .intro p {
+    display: none
+  }
+  .shell {
+    width: 80%;
+    margin: 0
+  }
+  #menu {
+    text-align: center;
+    left: 0;
+    right: 0
+  }
+  #menu-theme-desktop {
+    display: none !important
+  }
+  #menu-theme-mobile {
+    display: inline-block
+  }
+  .logo {
+    left: 50%;
+    margin-left: -71px;
+    bottom: 70px;
+    top: auto;
+    transition: all 1s ease-in;
+    -webkit-transition: all .3s ease-in;
+    opacity: 0;
+    visibility: hidden
+  }
+  .fp-viewing-page1 .logo {
+    display: block;
+    opacity: 1;
+    visibility: visible
+  }
+}
+@media screen and (max-width:700px) {
+  .fp-tableCell {
+    font-size: .8em
+  }
+  #menu a {
+    padding: 0 .7em .7em
+  }
+  .my-arrow.left, .my-arrow.right {
+    display: none
+  }
+  .fp-slidesNav.bottom {
+    display: block
+  }
+}
+@media screen and (max-width:630px) {
+  h1 {
+    font-size: 6.5em
+  }
+  #menu {
+    letter-spacing: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'
+  }
+}
+@media screen and (max-width:550px) {
+  #section-1 h1 {
+    font-size: 6em
+  }
+  h1 {
+    font-size: 5em
+  }
+  .intro p {
+    max-width: 75%
+  }
+  #menu li a {
+    padding: 0 .7em .7em
+  }
+  #download, #menu-contact, .mobile-hide {
+    display: none !important
+  }
+  .shell-body {
+    margin: 1.6em
+  }
+  #fp-nav.right {
+    right: 7px
+  }
+}
+@media screen and (max-width:380px) {
+  h1 {
+    font-size: 3.5em
+  }
+  .intro p {
+    max-width: 85%
+  }
+  #section-3 .shell {
+    font-size: .8em
+  }
+  .shell-body {
+    margin: 1em
+  }
+}
+@media only screen and (min-width:551px) {
+  .mobile-show {
+    display: none
+  }
+}
+}
+}
+</style>
+
+<!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+<style id="stylesheet-responsive" type="text/css">
+@CHARSET "ISO-8859-1";
+@media screen and (max-width:1135px) {
+  .fp-tableCell {
+    font-size: .9em
+  }
+  .examples-wrapper {
+    top: 100px;
+    -webkit-transform: none;
+    transform: none
+  }
+}
+@media screen and (max-width:1050px) {
+  .fp-tableCell {
+    font-size: .85em
+  }
+}
+@media screen and (max-width:1030px) {
+  #section-3 .intro {
+    width: 40%
+  }
+  .shell {
+    width: calc(60% - 54px)
+  }
+}
+@media screen and (max-width:900px) {
+  #section-3 .intro {
+    display: block;
+    text-align: center;
+    width: 100%
+  }
+  #section-3 .intro p {
+    display: none
+  }
+  .shell {
+    width: 80%;
+    margin: 0
+  }
+  #menu {
+    text-align: center;
+    left: 0;
+    right: 0
+  }
+  #menu-theme-desktop {
+    display: none !important
+  }
+  #menu-theme-mobile {
+    display: inline-block
+  }
+  .logo {
+    left: 50%;
+    margin-left: -71px;
+    bottom: 70px;
+    top: auto;
+    transition: all 1s ease-in;
+    -webkit-transition: all .3s ease-in;
+    opacity: 0;
+    visibility: hidden
+  }
+  .fp-viewing-page1 .logo {
+    display: block;
+    opacity: 1;
+    visibility: visible
+  }
+  .examples {
+    left: 0
+  }
+}
+@media screen and (max-height:500px) {
+  .section-1-usedBy {
+    display: none
+  }
+  .fp-slidesNav.bottom {
+    bottom: 0
+  }
+  .trusted-by-big {
+    background-position: 50% 0;
+    height: 54px
+  }
+}
+@media screen and (max-height:330px) {
+  .fp-section {
+    height: 350px !important
+  }
+}
+@media screen and (max-width:700px), screen and (max-height:500px) {
+  .fp-tableCell {
+    font-size: .8em
+  }
+  #menu a {
+    padding: 0 .7em .7em
+  }
+  .my-arrow.left, .my-arrow.right {
+    display: none
+  }
+  .fp-slidesNav.bottom {
+    display: block
+  }
+}
+@media screen and (max-width:630px) {
+  h1 {
+    font-size: 6.5em
+  }
+  #menu {
+    letter-spacing: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'
+  }
+  [data-lang=ru] h1 {
+    font-size: 4em
+  }
+}
+@media screen and (max-width:550px) {
+  #section-1 h1 {
+    font-size: 6em
+  }
+  h1 {
+    font-size: 5em
+  }
+  [data-lang=ru] h1 {
+    font-size: 3.6em
+  }
+  .intro p {
+    max-width: 75%
+  }
+  #menu li a {
+    padding: 0 .7em .7em
+  }
+  [data-lang=es] #menu li a, [data-lang=ru] #menu li a {
+    padding: 0 .4em .4em
+  }
+  [data-lang=es] #menu, [data-lang=ru] #menu {
+    font-size: .98em
+  }
+  #download, #menu-contact, .mobile-hide {
+    display: none !important
+  }
+  .shell-body {
+    margin: 1.6em
+  }
+  #fp-nav.right {
+    right: 7px
+  }
+}
+@media screen and (max-width:380px) {
+  h1 {
+    font-size: 3.5em
+  }
+  .intro p {
+    max-width: 85%
+  }
+  #section-3 .shell {
+    font-size: .8em
+  }
+  .shell-body {
+    margin: 1em
+  }
+}
+@media only screen and (min-width:551px) {
+  .mobile-show {
+    display: none
+  }
+}</style>
+</head>
+<body data-lang="en">
+<div id="fullpage">
+  <div class="section fp-table" id="section-1">
+    <div class="fp-tableCell">
+		<div class="container">
+      <h1> USE THE MADNESS OF MARCH</h1>
+      <h2>to drive traffic and increase revenue by offering<br> customers a chance to win <span>$250K</span> in cash or <span>CRYPTO</span>.</h2>
+      <div class="section-1-image "><img src="images/Group 4438.png"></div>
+   		</div> 
+	 </div>
+  </div>
+  <div class="section" id="section-2">
+        <div class="fp-tableCell">
+			<div class="container">
+                    <p>FantasyBoss will create a custom branded March Madness promotion that you can offer to customers. It’s another reason to support your business, and not the competition.</p>
+                    <h4>How would this increase revenue?</h4>
+			
+			<div class="contact-boxes">
+                    <div class="single-box">
+                        <h5>Increase Traffic</h5>
+                        <p>Offering a chance to win $250K in cash or CRYPTO is a great way to bring
+                            people in.</p>
+                        <span>No cost to customer, and a great
+reason for them to refer friends</span>
+                    </div>
+                    <div class="single-box">
+                        <h5>Contact Info</h5>
+                        <p>As people register, you'll receive their contact info, expanding your reach and
+                            customer database.</p>
+                        <span>A QR code is an easy way to get 
+contact info when people visit</span>
+                    </div>
+                    <div class="single-box">
+                        <h5>Loyalty</h5>
+                        <p>Smaller prizes, swag, and discounts are a great way to
+                            build loyalty &amp; keep them coming back.</p>
+                        <span>ex - participants with over 25pts
+                            get 5% off on Tuesday!</span>
+                    </div>
+                </div>
+         </div>
+	  </div>
+  </div>
+  <div class="section fp-table" id="section-3">
+    <div class="fp-tableCell">
+      <div class="container">
+        <h4>WHAT DO YOU NEED TO DO?</h4>
+<div class="faq-question">
+                    <div class="faq-box">
+                        <p>Just notify your customer base. We'll provide a registration link that can be emailed, and a QR code for in store use.</p><br><p> Decide prizes, big or small.<br> Prizes could be gift cards, swag, or whatever you choose.</p>
+                    </div>
+                    <div class="faq-box">
+						<p>FantasyBoss handles the tech, scores, &amp; leaderboards. </p><br><p>We'll also cover the cost to insure the $250,000 cash/crypto prize and notify you of winners throughout.</p>
+                    </div>
+                </div>  
+		<div class="faq-img"><img src="images/Group4457.png"></div>
+		
+		</div>
+
+    </div>
+  </div>
+  <div class="section" id="section-4">
+    <div class="container">
+<div class="col-left">
+                    <div class="sign-up-box">
+                        <h5>WHAT THIS LOOKS LIKE</h5>
+                        <p>Users are directed to your custom promotion on our app/website. They make picks and can view scores on the leaderboard.</p>
+                    </div>
+                    <img src="images/Group 4463.png" alt="">
+                </div>
+		
+		<div class="col-right">
+                  <div class="sign-up-box">
+                    <h5>WHAT THIS COSTS</h5>
+                    <p>For first 100 businesses, the cost is $1,500 per location. <br><br>
+                        After 100, the cost to insure the promotion increases,
+                        and the price will increase to $3,000 per location.</p>
+
+                        <a href="./signup.html" class="button">Sign up</a>
+                </div>
+                </div>
+		
+    </div>
+  </div>
+</div>
+<ul id="menu">
+  <li class="menu-active menu-wordpress"> <a href="#" rel=""> <span id="menu-theme-desktop">WordPress</span> <span id="menu-theme-mobile">Contact</span> </a> </li>
+  <li><a href="#" class="show-examples">Faq</a></li>
+  <li><a href="./signup.html" class="show-examples">Signup</a></li>
+  <li id="menu-line"></li>
+</ul>
+<div class="logo"><img src="images/logo.png" alt="FantasyBoss">  <img src="images/logo-w.png" alt="FantasyBoss"> </div>
+<script type="text/javascript" src="fullpage.js"></script> 
+<script type="text/javascript">
+        new fullpage('#fullpage', {
+            css3: true,
+            scrollingSpeed: 1000,
+            navigation: true,
+            slidesNavigation: true,
+            responsiveHeight: 330,
+            dragAndMove: true,
+            dragAndMoveKey: 'YWx2YXJvdHJpZ28uY29tX0EyMlpISmhaMEZ1WkUxdmRtVT0wWUc=',
+            controlArrows: false
+        });
+</script> 
+<script type="text/javascript">!function(i,a){"use strict";var e,t,n,s=fp_utils.$,o=fp_utils.after,l=fp_utils.hasClass,r=fp_utils.addClass,u=fp_utils.toggleClass,c=fp_utils.removeClass,f=fp_utils.siblings,d=fp_utils.preventDefault,p=".language",h=s("#menu-line")[0],g=s(".menu-active").offsetWidth,v=0,m=40,L="active";function E(){m=2*parseFloat(getComputedStyle(fp_utils.$(".menu-active a")[0]).paddingLeft)}function y(){var e,t,n,i,a;e="GET",t="https://alvarotrigo.com/fullPage/routes/github-api.php",n=null,i=function(e){var n=JSON.parse(e);Object.keys(n).forEach(function(e){var t=s('[data-github="'+e+'"] h4')[0];t&&(t.innerHTML=n[e])})},(a=new XMLHttpRequest).open(e,t,!0),a.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8"),a.send(n),a.onreadystatechange=function(){4===a.readyState&&(200===a.status?i(a.responseText):console.log("Error: "+a.status))}}function w(e){switch(e.keyCode){case 27:l(s(".examples")[0],L)&&T()}}function b(){l(this,"left")?fullpage_api.moveSlideLeft():fullpage_api.moveSlideRight()}function _(){var e,t,n;e="non-critical.min.css?v=2",t=a.document.createElement("link"),a.document.styleSheets,t.rel="stylesheet",t.href=e,o(s("#stylesheet-critical")[0],t),s(".github-stars")[0].setAttribute("src","https://ghbtns.com/github-btn.html?user=alvarotrigo&repo=fullpage.js&type=star&count=true&size=large"),(n=decodeURIComponent(a.location.hash.substr(1))).length&&s("."+n,i).length&&fp_utils.trigger(s(".show-examples")[0],"click"),y()}function k(){clearTimeout(e),e=setTimeout(x,350)}function x(){if(g=s(".menu-active")[0].offsetWidth,a.innerWidth<=900){E();var e=s("#menu a")[0];R.call(e),v=e.offsetLeft}else 900<a.innerWidth&&(E(),R.call(s("#menu a")[0]),v=0)}function T(){clearTimeout(t),t=setTimeout(function(){S(".examples"),fullpage_api.setAllowScrolling(!0)},500)}function C(e){S(".examples"),fullpage_api.setAllowScrolling(!1)}function S(e){u(s(e)[0],L)}function W(e){void 0!==e&&(d(e),(e||a.event).stopPropagation()),S(p)}function A(e){c(s(p)[0],L)}function R(){var e=this.parentNode;D(e.offsetLeft,e.offsetWidth)}function j(){D(v,g)}function D(e,t){h.style.left=e+m/2+"px",h.style.width=t-m+"px"}function H(e){d(e);var t=this.getAttribute("href").substr(1);r(this,L),c(f(this),L);var n=s('[data-tab="'+t+'"]')[0];r(n,L),c(f(n),L)}E(),h.style.width=g-m+"px",h.style.left="20px","en"!==(!(n=navigator.language||navigator.userLanguage)||n.indexOf("-")<0?n:n.split("-")[0])&&W(),k(),s(".menu-active a")[0].addEventListener("click",function(e){e.preventDefault()}),s("#menu li a").forEach(function(e){e.addEventListener("mouseover",R),e.addEventListener("mouseout",j)}),a.addEventListener("resize",k),a.addEventListener("load",_),s(".shell-tab").forEach(function(e){e.addEventListener("click",H)}),s(".language-current")[0].addEventListener("click",W),s("html")[0].addEventListener("click",A),s(".info-close")[0].addEventListener("touchstart",T),s(".info-close")[0].addEventListener("click",T),s(".show-examples")[0].addEventListener("click",C),i.addEventListener("keydown",w),s(".my-arrow").forEach(function(e){e.addEventListener("click",b)}),"serviceWorker"in navigator&&a.addEventListener("load",function(){}),function(){function e(){dataLayer.push(arguments)}a.dataLayer=a.dataLayer||[],e("js",new Date),e("config","UA-94005074-1"),e("config","AW-1012934304")}()}(document,window);</script> 
+
+<!-- Google Analytics (do not copy!) --> 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94005074-1"></script> 
+<!-- End Google Analytics -->
+
+<noscript>
+<img height="1" width="1" style="display:none" alt="fb" src="https://www.facebook.com/tr?id=1786065945027357&ev=PageView&noscript=1">
+</noscript>
+<input type="hidden" id="_4" value="7e68giOjsw">
+<!-- DO NOT MODIFY --> 
+<!-- End Facebook Pixel Code -->
+
+</body>
+</html>
